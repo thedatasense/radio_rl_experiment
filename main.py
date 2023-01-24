@@ -65,7 +65,8 @@ if args.network == 'DQN':
     agent.attach(bc.LearningRateController(args.learning_rate[0], args.learning_rate[1], args.learning_rate[2]))
     agent.attach(bc.InterleavedTestEpochController(
     epoch_length=1000,
-    controllers_to_disable=[1, 2, 3, 4]))
+    ))
+    #controllers_to_disable=[1, 2, 3, 4]
 elif args.network == 'DDPG':
     network = MyACNetwork(
         environment=env,
@@ -94,3 +95,5 @@ elif args.network == 'DDPG':
         controllers_to_disable=[1, 2, 3, 4]))
 
 agent.run(n_epochs=args.epochs[0], epoch_length=args.epochs[1])
+
+# python main.py -s c++ -n DQN -r killed --fname bmac_dqn_v1 -e 5 250

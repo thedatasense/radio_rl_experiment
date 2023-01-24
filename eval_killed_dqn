@@ -1,0 +1,8 @@
+2020-09-02 13:39:59.591069
+Namespace(center=False, fname='killed_dqn_new', network='DQN', obs_type='densities', resize=False, reward='killed', simulation='c++', special=True, tumor_radius=False)
+TCP =  1.0
+Avg rad 35.6335 Std error: 5.843494481044711
+Avg length in successes 262.2 Std error: 51.10013698611776
+Avg number of doses 10.925 Std error: 2.1291723744215734
+Avg surviving fraction:  1.005138957405285 Std error: 0.03950095096242483
+done

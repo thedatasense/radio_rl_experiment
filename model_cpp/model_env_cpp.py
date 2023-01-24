@@ -64,7 +64,7 @@ class CellEnvironment(Environment):
         plt.show()
 
     def reset(self, mode):
-        cppCellModel.delete_controller(self.controller_capsule)
+        #cppCellModel.delete_controller(self.controller_capsule)
         self.controller_capsule = cppCellModel.controller_constructor(50, 50, 100, 350)
         self.init_hcell_count = cppCellModel.HCellCount()
         if mode == -1:
@@ -191,7 +191,7 @@ def transform(head):
     return to_ret
 
 def transform_densities(obs):
-    to_ret = np.zeros(shape=(obs.shape[0], obs.shape[1], 3), dtype=np.int)
+    to_ret = np.zeros(shape=(obs.shape[0], obs.shape[1], 3), dtype=int)
     for i in range(obs.shape[0]):
         for j in range(obs.shape[1]):
             if obs[i][j] < 0:
@@ -237,7 +237,7 @@ def tcp_test(num):
         elif count == 0:
             count_success += 1
         counts[-1] /= cppCellModel.HCellCount()
-        cppCellModel.delete_controller(controller)
+        #cppCellModel.delete_controller(controller)
     print("Percentage of full recovs :", (100*count_success)/ num)
     print("Percentage of almost recovs :", (100*(num - count_failed))/ num)
     print("Average dose in successes :", 2*sum(steps)/len(steps))
@@ -250,7 +250,7 @@ def _test():
         cppCellModel.irradiate(controller, 2)
         cppCellModel.go(controller, 24)
         print(cppCellModel.CCellCount())
-        cppCellModel.delete_controller(controller)
+        #cppCellModel.delete_controller(controller)
 
 def save_tumor_image(data, tick):
     sizes = np.shape(data)
@@ -277,7 +277,7 @@ if __name__ == '__main__':
         cppCellModel.go(controller, 24)
         c= cppCellModel.CCellCount()
         print(b / a, c / b)
-    cppCellModel.delete_controller(controller)
+    #cppCellModel.delete_controller(controller)
     '''
     save_tumor_image(transform_densities(cppCellModel.observeGrid(controller)), 0)
     for i in range(50):

@@ -15,6 +15,7 @@ parser.add_argument('--fname', default='nnet')
 parser.add_argument('-c', '--center', action='store_true')
 args = parser.parse_args()
 print(args)
+# python use_network.py -s c++  -n DQN -r killed  --fname killed_dqn_new
 
 if args.simulation == 'c++':
     from model_cpp.model_env_cpp import CellEnvironment, transform_densities
@@ -26,8 +27,9 @@ import matplotlib.colors as mcol
 import numpy as np
 from misc.treatment_var import treatment_var
 from misc.draw_treatment import make_img, make_img3
+print("Initializing the environment.....")
 env = CellEnvironment(args.obs_type, args.resize, args.reward, args.network, args.special)
-
+print("Initialized the environment.....")
 def save_tumor_image(data, tick):
     data = transform_densities(data)
     sizes = np.shape(data)
@@ -113,7 +115,7 @@ avg_percentage = []
 avg_doses = []
 k = 1000
 for i in range(k):
-    #print(i)
+    print("Runnning {} Iteration...".format(i))
     agent._runEpisode(100000)
     if env.end_type == 'W':
         count += 1

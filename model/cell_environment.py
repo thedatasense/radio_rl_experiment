@@ -106,6 +106,9 @@ class CellEnvironment(Environment):
                 print("Radiation dose :", dose, "Gy ", "remaining :", post_ccell,  "time =", rest, "reward=", reward)
         return reward
 
+    def surviving_fraction(self):
+        return HealthyCell.cell_count/ self.init_hcell_count
+
     def adjust_reward(self, dose, ccell_killed, hcells_lost):
         if self.special_reward and self.inTerminalState() or False:
             if self.end_type == "L" or self.end_type == "T":
@@ -170,7 +173,7 @@ class CellEnvironment(Environment):
         print(test_data_set)
 
 def transform(head):
-    to_ret = np.zeros(shape=(head.shape[0], head.shape[1], 3), dtype=np.int)
+    to_ret = np.zeros(shape=(head.shape[0], head.shape[1], 3), dtype=int)
     for i in range(head.shape[0]):
         for j in range(head.shape[1]):
             if head[i][j] == 1:
@@ -181,7 +184,7 @@ def transform(head):
 
 
 def transform_densities(obs):
-    to_ret = np.zeros(shape=(obs.shape[0], obs.shape[1], 3), dtype=np.int)
+    to_ret = np.zeros(shape=(obs.shape[0], obs.shape[1], 3), dtype=int)
     for i in range(obs.shape[0]):
         for j in range(obs.shape[1]):
             if obs[i][j] < 0:
